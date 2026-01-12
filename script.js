@@ -59,6 +59,7 @@ const updateLivePreview = ()=> {
 numberBtns.forEach((button)=>{
   button.addEventListener('click', () => {
     const btnValue =button.innerText;
+    currentOperand.innerText = btnValue
     if (shouldResetDisplay) {
       currentOperand.innerText=btnValue
       shouldResetDisplay=false
@@ -73,13 +74,6 @@ numberBtns.forEach((button)=>{
     return
   }
   
-  if (currentOperand.innerText ==='0') {
-    currentOperand.innerText = btnValue;
-
-  } else{
-    currentOperand.innerText += btnValue
-    
-  }
   currentValue = currentOperand.innerText;
   updateLivePreview()
 })
@@ -167,14 +161,14 @@ controlBtns.forEach((button) => {
        updateLivePreview()
      } else if (button.dataset.action=== 'delete') {
          if  (currentOperand.innerText!==''){
-           currentOperand.innerText = currentOperand.innerText.slice(0, -1);
+          currentValue= currentOperand.innerText = currentOperand.innerText.slice(0, -1);
            
          } else if(currentOperator.innerText !==''){
            currentOperator.innerText = '';
            currentOperatorValue = null
       
            } else if (previousOperand !=='') {
-           previousOperand.innerText = previousOperand.innerText.slice(0, -1) || '0'
+         previousValue =  previousOperand.innerText = previousOperand.innerText.slice(0, -1);
          }
          else{
            return
