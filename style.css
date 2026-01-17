@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --bg: #F0F0F3;
+  --shadow-light: #ffffff;
+  --shadow-dark: #c7c7c7;
+  --accent: #6231FF;
+  --text: #222;
+}
+
+body.light-theme {
+  --bg: #F0F0F3;
+  --shadow-light: #ffffff;
+  --shadow-dark: #c7c7c7;
+  --accent: #6231FF;
+  --text: #222;
+}
+
+body.dark-theme {
+  --bg: #181818;
+  --shadow-light: #2a2a2a;
+  --shadow-dark: #0f0f0f;
+  --accent: #FFB11B;
+  --text: #eee;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.theme-switch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.theme-switch button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--bg);
+  box-shadow: 6px 6px 10px var(--shadow-dark),
+              -6px -6px 10px var(--shadow-light);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.theme-switch button:hover {
+  box-shadow: inset 6px 6px 10px var(--shadow-dark),
+              inset -6px -6px 10px var(--shadow-light);
+}
+
+.calculator {
+  width: 360px;
+  padding: 25px;
+  border-radius: 30px;
+  background: var(--bg);
+  box-shadow: 12px 12px 24px var(--shadow-dark),
+              -12px -12px 24px var(--shadow-light);
+}
+
+.display {
+  height: 90px;
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background: var(--bg);
+  box-shadow: inset 8px 8px 16px var(--shadow-dark),
+              inset -8px -8px 16px var(--shadow-light);
+}
+
+.previous-operand {
+  font-size: 14px;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.current-operator {
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.current-operand {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.result-display {
+  height: 40px;
+  margin-bottom: 15px;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: inset 6px 6px 12px var(--shadow-dark),
+              inset -6px -6px 12px var(--shadow-light);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 18px;
+  border-radius: 40%;
+  background: var(--bg);
+  box-shadow: 8px 8px 16px var(--shadow-dark),
+              -8px -8px 16px var(--shadow-light);
+  color: var(--text);
+}
+
+.btn:hover {
+  box-shadow: inset 8px 8px 16px var(--shadow-dark),
+              inset -8px -8px 16px var(--shadow-light);
+}
+
+.control {
+  border-radius: 20px;
+  color: var(--accent);
+}
+
+.operator {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.number {
+  font-weight: 600;
+}
+
+.zero {
+  grid-column: span 1;
+  border-radius: 25px;
+}
+
+.equals {
+  grid-column: span 2;
+  border-radius: 30px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 8px 8px 16px rgba(0,0,0,0.2),
+              -8px -8px 16px rgba(255,255,255,0.15);
+}
+
+.equals:hover {
+  box-shadow: inset 8px 8px 16px rgba(0,0,0,0.2),
+              inset -8px -8px 16px rgba(255,255,255,0.15);
+}
