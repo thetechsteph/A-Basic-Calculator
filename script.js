@@ -1,5 +1,5 @@
 
-console.log('Calculator script loaded')
+console.log('Calculator script loaded - A Working Basic Calculator(Phase 1)');
 
 const currentOperand = document.querySelector('.current-operand');
 const previousOperand = document.querySelector('.previous-operand');
