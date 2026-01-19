@@ -15,7 +15,7 @@
 
 <div class="calculator">
   
-<!--DISPLAY-->
+  <!--DISPLAY-->
 <div class="display">
   <div class="previous-operand">
     
@@ -33,40 +33,66 @@
 <!--BUTTONS-->
 
 <div class="buttons">
-  
-  <!--CONTROLS-->
-  <button class="btn control" data-action="clear"> AC </button>
-  <button class="btn control" data-action="delete">DEL</button>
-    <button class="btn operator" data-operator="÷">÷</button>
-  <button class="btn operator" data-operator="%">%</button>
+     <div class="advanced-buttons">
+        <button class="btn advanced" data-action="mplus">M+</button>
+ <button class="btn advanced" data-action="mminus">M-</button>
+ <button class="btn advanced" data-action="mr">MR</button>
+ <button class="btn advanced" data-action="mc">MC</button>
+        <button class="btn advanced" data-operator="(">(</button>
+ <button class="btn advanced" data-operator=")">)</button>
+ <button class="btn advanced" data-operator="sin">sin</button>
+ <button class="btn advanced" data-operator="cos">cos</button>
+ <button class="btn advanced" data-operator="tan">tan</button>
 
+ <button class="btn advanced" data-action="plusminus">±</button>
+ <button class="btn advanced" data-operator="(">(</button>
+<button class="btn advanced" data-operator=")">)</button>
+<button class="btn advanced" data-operator="sin">sin</button>
+<button class="btn advanced" data-operator="cos">cos</button>
+<button class="btn advanced" data-operator="tan">tan</button>
+<button class="btn advanced" data-action="mplus">M+</button>
+<button class="btn advanced" data-action="mminus">M-</button>
+<button class="btn advanced" data-action="mr">MR</button>
+<button class="btn advanced" data-action="mc">MC</button>
+<button class="btn advanced" data-action="plusminus">±</button>
+     </div>
+  <!--CONTROLS-->
+<div class="basic-buttons">
+    <button class="btn control" data-action="clear"> AC </button>
+  <button class="btn control" data-action="delete">DEL</button>
+  <button class="btn operator" data-operator="÷">÷</button>
+  <button class="btn operator" data-operator="mod">mod</button>
+  
   
   <!--NUMBERS-->
-  <button class="btn number" >7</button>
-    <button class="btn number" >8</button>
-    <button class="btn number" >9</button>
-    
-      <button class="btn operator" data-operator="×">×</button>
-      
-   <button class="btn number" >4</button>
-    <button class="btn number" >5</button>
-    <button class="btn number" >6</button>
-      
-    <button class="btn operator" data-operator="-">-</button>
-    
-     <button class="btn number" >1</button>
-    <button class="btn number" >2</button>
-    <button class="btn number" >3</button>
-      
-    <button class="btn operator" data-operator="+">+</button>
-    
-     <!-- BOTTOM ROW -->
+  <button class="btn number">7</button>
+  <button class="btn number">8</button>
+  <button class="btn number">9</button>
+  
+  <button class="btn operator" data-operator="×">×</button>
+  
+  <button class="btn number">4</button>
+  <button class="btn number">5</button>
+  <button class="btn number">6</button>
+  
+  <button class="btn operator" data-operator="-">-</button>
+  
+  <button class="btn number">1</button>
+  <button class="btn number">2</button>
+  <button class="btn number">3</button>
+  
+  <button class="btn operator" data-operator="+">+</button>
+  
+  <!-- BOTTOM ROW -->
+  
+  <button class="btn number">.</button>
+  <button class="btn number zero">0</button>
+  <button class="btn equals" data-action="equals">=</button>
 
-      <button class="btn number">.</button>
-            <button class="btn number zero">0</button>
-      <button class="btn equals" data-action="equals">=</button>
-      
 </div>
+
+</div>
+
 
 </div>
   <script src="script.js"></script>

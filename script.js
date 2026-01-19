@@ -76,28 +76,49 @@ const precedence ={
   '-': 1,
   '×': 2,
   '÷': 2,
-  '%': 2,
+  'mod': 2,
 };
 
 
 function toPostFix(expr) {
   let output = [];
   let stack = [];
-  
-  for(let token of  expr){
-    if (!isNaN(token)){
+
+  for (let token of expr) {
+    // number
+    if (!isNaN(token)) {
       output.push(token);
-    } else{
-      
-      while(stack.length && precedence[stack[stack.length - 1]] >= precedence[token]) {
-        output.push(stack.pop())
+    }
+
+    // left bracket
+    else if (token === '(') {
+      stack.push(token);
+    }
+
+    // right bracket
+    else if (token === ')') {
+      while (stack.length && stack[stack.length - 1] !== '(') {
+        output.push(stack.pop());
+      }
+      stack.pop(); // remove '('
+    }
+
+    // operator
+    else {
+      while (
+        stack.length &&
+        precedence[stack[stack.length - 1]] >= precedence[token]
+      ) {
+        output.push(stack.pop());
       }
       stack.push(token);
     }
   }
-  while(stack.length){
+
+  while (stack.length) {
     output.push(stack.pop());
   }
+
   return output;
 }
  
@@ -115,7 +136,7 @@ function evaluatePostfix(postfix) {
       if (token === '-') stack.push(a - b);
       if (token === '×') stack.push(a * b);
       if (token === '÷') stack.push(a / b);
-      if (token === '%') stack.push(a % b);
+      if (token === 'mod') stack.push(a % b);
     }
   }
 
