@@ -107,7 +107,7 @@ right: 20px;
               inset -6px -6px 12px var(--shadow-light);
 }
 
-.basic-buttons, .advanced-buttons{
+.basic-buttons{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
