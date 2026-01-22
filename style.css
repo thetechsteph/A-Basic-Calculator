@@ -76,7 +76,13 @@ right: 20px;
   box-shadow: inset 8px 8px 16px var(--shadow-dark),
               inset -8px -8px 16px var(--shadow-light);
 
-  overflow: hidden;       
+  overflow: hidden;    
+
+}
+
+.previous-operand::-webkit-scrollbar,
+.result-display::-webkit-scrollbar {
+  display: none; 
 }
 
 .previous-operand {
@@ -88,7 +94,8 @@ right: 20px;
   overflow-x: auto;       
   overflow-y: hidden;       
   max-width: 100%;        
-  padding-right: 10px;      
+  padding-right: 10px;
+  scrollbar-width: none;
 }
 
 .current-operator {
@@ -115,6 +122,7 @@ right: 20px;
 
   white-space: nowrap;
   overflow-x: auto;
+  scrollbar-width: none;
 }
 
 .basic-buttons{
