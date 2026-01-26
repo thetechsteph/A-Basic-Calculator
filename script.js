@@ -41,25 +41,42 @@ const toggleBtn = document.querySelector('.theme-switch');
   
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');  
   
+/*
+
 if (prefersDarkScheme.matches) {  
   html.setAttribute('data-theme', 'dark');  
   toggleBtn.innerHTML = moonSVG;  
 } else {  
   html.setAttribute('data-theme', 'light');  
   toggleBtn.innerHTML = sunSVG;  
-}  
+} 
+  
+*/ 
+
+
+// Functional Refactor: 
+const applyTheme = (isDark) => {  
+  html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  toggleBtn.innerHTML = isDark ? moonSVG : sunSVG;
+}
+
+applyTheme(prefersDarkScheme.matches);
+ 
   
 toggleBtn.addEventListener("click", () => {  
-  const currentTheme = html.getAttribute("data-theme");  
-  
-  if (currentTheme === "dark") {  
-    html.setAttribute("data-theme", "light");  
-    toggleBtn.innerHTML = sunSVG;  
-  } else {  
-    html.setAttribute("data-theme", "dark");  
-    toggleBtn.innerHTML = moonSVG;  
-  }  
+  const currentTheme = html.getAttribute("data-theme"); 
+
+  const isDark = currentTheme === "dark"; 
+   applyTheme(!isDark);
+  // if (currentTheme === "dark") {  
+  //   html.setAttribute("data-theme", "light");  
+  //   toggleBtn.innerHTML = sunSVG;  
+  // } else {  
+  //   html.setAttribute("data-theme", "dark");  
+  //   toggleBtn.innerHTML = moonSVG;  
+  //}  
 });  
+  
   
   
 // Calculator Logic  
@@ -77,33 +94,66 @@ const precedence = {
 };  
   
   
-function toPostFix(expr) {  
-  let output = [];  
-  let stack = [];  
+// function toPostFix(expr) {  
+//   let output = [];  
+//   let stack = [];  
   
-  for (let token of expr) {  
+//   for (let token of expr) {  
   
-    if (!isNaN(token)) {  
-      output.push(token);  
-    }  
+//     if (!isNaN(token)) {  
+//       output.push(token);  
+//     }  
   
-    else {  
-      while (  
-        stack.length &&  
-        precedence[stack[stack.length - 1]] >= precedence[token]  
-      ) {  
-        output.push(stack.pop());  
-      }  
-      stack.push(token);  
-    }  
-  }  
+//     else {  
+//       while (  
+//         stack.length &&  
+//         precedence[stack[stack.length - 1]] >= precedence[token]  
+//       ) {  
+
+//         output.push(stack.pop());  
+//       }  
+//       stack.push(token);  
+//     }  
+//   }  
   
-  while (stack.length) {  
-    output.push(stack.pop());  
-  }  
+//   while (stack.length) {  
+//     output.push(stack.pop());  
+//   }  
   
-  return output;  
-}  
+//   return output;  
+
+// }  
+
+
+const postFix = (expr, precedence) => {
+  const { output, operatorStack } = expr.reduce(
+    ({ output, operatorStack }, token) => {
+      if (!isNaN(token)) {
+        // Numbers go straight to output
+        return { output: [...output, token], operatorStack };
+      }
+
+      // Find the position where current operator should sit
+      const lastLowerPrecedenceIndex = operatorStack.findLastIndex(
+        op => precedence[op] < precedence[token]
+      );
+
+      // Operators after that index must be popped to output
+      const newOutput = [...output, ...operatorStack.slice(lastLowerPrecedenceIndex + 1)];
+
+      // Keep the operators up to that index and push current token
+      const newStack = [...operatorStack.slice(0, lastLowerPrecedenceIndex + 1), token];
+
+      return { output: newOutput, operatorStack: newStack };
+    },
+    { output: [], operatorStack: [] }
+  );
+
+  // Pop remaining operators in stack to output
+  return [...output, ...operatorStack.reverse()];
+};
+
+
   
 function evaluatePostfix(postfix) {  
   let stack = [];  
@@ -143,7 +193,8 @@ const updateLivePreview = () => {
     return;  
   }  
   
-  const postfix = toPostFix(expression);  
+  // const postfix = toPostFix(expression);  
+  const postfix = postFix(expression, precedence);
   const result = evaluatePostfix(postfix);  
   
   resultDisplay.innerText = result;  
@@ -215,7 +266,8 @@ equalsBtn.addEventListener('click', () => {
   const lastItem = expression[expression.length - 1];  
   if (isNaN(lastItem)) return;  
   
-  const postfix = toPostFix(expression);  
+  // const postfix = toPostFix(expression);  
+  const postfix = postFix(expression, precedence);
   const result = evaluatePostfix(postfix);  
   
   previousOperand.innerText = result;  
